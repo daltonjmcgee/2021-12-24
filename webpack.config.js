@@ -30,7 +30,31 @@ module.exports = {
       },
       {
         test: /\.png|\.jpe?g$/,
-        type: 'asset/resource',
+        use:
+        [
+          {
+            loader: 'file-loader',
+            options:
+            {
+              outputPath: 'images/',
+               name: '[name].[ext]',
+            }
+          }
+        ]
+      },
+      {
+        test: /\.(glb|gltf)$/,
+        use:
+          [
+            {
+              loader: 'file-loader',
+              options:
+              {
+                outputPath: 'assets/models/',
+                 name: '[name].[ext]',
+              }
+            }
+          ]
       },
       {
         test: /\.(html|svelte)$/,
@@ -63,7 +87,6 @@ module.exports = {
   },
   output: {
     filename: 'main.js',
-    assetModuleFilename: 'images/[name][ext]',
     path: path.resolve(__dirname, 'dist')
   },
   plugins: [

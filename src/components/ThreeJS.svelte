@@ -1,6 +1,6 @@
 <script>
   import displayThree from "../threejs";
-  document.addEventListener('DOMContentLoaded', ()=>displayThree());
+  document.addEventListener("DOMContentLoaded", () => displayThree());
 </script>
 
-<div id="3d" class="row"></div>
+<div id="3d" class="row" />

@@ -12,7 +12,7 @@ module.exports = {
   mode: 'development',
   devServer: {
     static: {
-      directory: path.join(__dirname, 'dist'),
+      directory: path.join(__dirname, 'docs'),
     },
     compress: true,
     port: 3000,
@@ -87,7 +87,7 @@ module.exports = {
   },
   output: {
     filename: 'main.js',
-    path: path.resolve(__dirname, 'dist')
+    path: path.resolve(__dirname, 'docs')
   },
   plugins: [
     new HtmlWebpackPlugin(),

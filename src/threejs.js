@@ -12,7 +12,7 @@ import '../static/meadowcroft_chair.glb';
 export default function displayThree() {
   const wrapper = document.querySelector('main');
   const scene = new Scene();
-  const camera = new PerspectiveCamera(75, wrapper.scrollWidth / window.innerHeight, 0.01, 1000);
+  const camera = new PerspectiveCamera(75, wrapper.scrollWidth / (window.innerHeight*.75), 0.01, 1000);
   camera.position.x = .15;
   camera.position.y = .6;
   camera.position.z = 1;
@@ -41,7 +41,7 @@ export default function displayThree() {
   pointLight001.position.set(-4, -4, 0);
   pointLight002.position.set(4, 4, 9);
 
-  renderer.setSize(wrapper.offsetWidth, window.innerHeight);
+  renderer.setSize(wrapper.offsetWidth, window.innerHeight*.75);
 
   const main = document.getElementById('3d');
   main.appendChild(renderer.domElement);
@@ -56,8 +56,8 @@ export default function displayThree() {
 
   function onWindowResize() {
     const resizedWrapper = document.querySelector('main');
-    camera.aspect = resizedWrapper.offsetWidth / window.innerHeight;
-    renderer.setSize(resizedWrapper.offsetWidth, window.innerHeight);
+    camera.aspect = resizedWrapper.offsetWidth / (window.innerHeight*.75);
+    renderer.setSize(resizedWrapper.offsetWidth, window.innerHeight*.75);
     camera.updateProjectionMatrix();
   }
 

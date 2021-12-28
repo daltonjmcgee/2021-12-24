@@ -24,7 +24,7 @@ export default function displayThree() {
 
   // Model
   const loader = new GLTFLoader();
-  loader.load('/assets/models/meadowcroft_chair.glb', function (glb) {
+  loader.load('assets/models/meadowcroft_chair.glb', function (glb) {
     scene.add(glb.scene);
     const model = glb.scene
     model.rotation.y = 4.04;

@@ -1,9 +1,11 @@
 <script>
-  import Content from './Content.svelte';
-  import ThreeJS from './ThreeJS.svelte';
+  import BasicContent from './BasicContent.svelte';
+  import Gallery from './Gallery.svelte';
+  import Canvas from './Canvas.svelte';
 </script>
 
 <main>
-  <Content />
-  <ThreeJS />
+  <BasicContent />
+  <Gallery />
+  <Canvas />
 </main>

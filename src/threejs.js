@@ -10,8 +10,9 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import '../static/meadowcroft_chair.glb';
 
 export default function displayThree() {
+  const wrapper = document.querySelector('main');
   const scene = new Scene();
-  const camera = new PerspectiveCamera(75, window.innerWidth / 2 / window.innerHeight, 0.01, 1000);
+  const camera = new PerspectiveCamera(75, wrapper.scrollWidth / window.innerHeight, 0.01, 1000);
   camera.position.x = .15;
   camera.position.y = .6;
   camera.position.z = 1;
@@ -23,11 +24,11 @@ export default function displayThree() {
 
   // Model
   const loader = new GLTFLoader();
-  loader.load('/assets/models/meadowcroft_chair.glb', function(glb){
-    scene.add( glb.scene );
+  loader.load('/assets/models/meadowcroft_chair.glb', function (glb) {
+    scene.add(glb.scene);
     const model = glb.scene
     model.rotation.y = 4.04;
-    controls.target.set(model.position.x, model.position.y+.33, model.position.z);
+    controls.target.set(model.position.x, model.position.y + .33, model.position.z);
   });
 
   // Lights
@@ -37,16 +38,10 @@ export default function displayThree() {
   scene.add(pointLight001);
   scene.add(pointLight002);
   scene.add(ambientLight001);
-  pointLight001.position.set(-4,-4, 0);
+  pointLight001.position.set(-4, -4, 0);
   pointLight002.position.set(4, 4, 9);
 
-  renderer.setSize(window.innerWidth / 2, window.innerHeight);
-
-  if (window.matchMedia("(max-width:980px").matches){
-    camera.aspect = (window.innerWidth)/window.innerHeight;
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    camera.updateProjectionMatrix();
-  }
+  renderer.setSize(wrapper.offsetWidth, window.innerHeight);
 
   const main = document.getElementById('3d');
   main.appendChild(renderer.domElement);
@@ -60,13 +55,9 @@ export default function displayThree() {
   window.addEventListener('resize', onWindowResize, false);
 
   function onWindowResize() {
-    if (window.matchMedia("(max-width:980px").matches){
-      camera.aspect = (window.innerWidth)/window.innerHeight;
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    } else {
-      camera.aspect = (window.innerWidth/2)/window.innerHeight;
-      renderer.setSize(window.innerWidth/2, window.innerHeight);
-    }
+    const resizedWrapper = document.querySelector('main');
+    camera.aspect = resizedWrapper.offsetWidth / window.innerHeight;
+    renderer.setSize(resizedWrapper.offsetWidth, window.innerHeight);
     camera.updateProjectionMatrix();
   }
 
